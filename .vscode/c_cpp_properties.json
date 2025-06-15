@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/matching_engine/src",
+                "${workspaceFolder}/matching_engine/external/websocketpp",
+                "${workspaceFolder}/matching_engine/external/nlohmann_json/include",
+                "${workspaceFolder}/matching_engine/external/cpp-httplib",
+                "${workspaceFolder}/matching_engine/external/asio/asio/include",
+                "${workspaceFolder}/matching_engine/external/googletest/googletest/include",
+                "${workspaceFolder}/matching_engine/external/googletest/googlemock/include",
+                "${workspaceFolder}/matching_engine/src/core",
+                "${workspaceFolder}/matching_engine/src/api",
+                "${workspaceFolder}/matching_engine/src/utils",
+                "${workspaceFolder}/matching_engine/external/boost_1_83_0"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+} 

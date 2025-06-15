@@ -59,7 +59,6 @@ build.ninja
 
 # IDE files
 .vs/
-.vscode/
 *.swp
 *.swo
 *.user
