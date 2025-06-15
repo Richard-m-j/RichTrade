@@ -1,0 +1,86 @@
+# Build directories
+/matching_engine/build/
+build/
+out/
+bin/
+lib/
+cmake-build-*/
+
+# External dependencies
+/matching_engine/external/
+/matching_engine/_deps/
+
+# CMake generated files
+/matching_engine/CMakeFiles/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+*.cmake
+!CMakeLists.txt
+
+# Ninja generated files
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Prerequisites
+*.d
+
+# IDE files
+.vs/
+.vscode/
+*.swp
+*.swo
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.VC.db-shm
+*.VC.db-wal
+*.VC.VC.opendb
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# Coverage reports
+*.gcno
+*.gcda
+*.gcov
+coverage/
