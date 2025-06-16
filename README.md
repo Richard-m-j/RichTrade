@@ -35,6 +35,36 @@ This project uses C++. Make sure you have a C++ compiler and CMake installed on 
    cmake --build .
    ```
 
-## License
+### Trading Client Setup and Usage
 
-[License information to be added] 
+The trading client is a separate component that interacts with the matching engine. Here's how to set it up:
+
+1. Navigate to the trading client directory:
+   ```bash
+   cd trading_client
+   ```
+
+2. Create a build directory for the client:
+   ```bash
+   mkdir build && cd build
+   ```
+
+3. Configure the client with CMake:
+   ```bash
+   cmake ..
+   ```
+
+4. Build the trading client:
+   ```bash
+   cmake --build .
+   ```
+
+5. Run the trading client:
+   ```bash
+   ./TradingClient
+   ```
+
+Note: Make sure the matching engine is running before starting the trading client. The client will attempt to connect to the matching engine on the default port.
+
+## License
+// ... existing code ...
