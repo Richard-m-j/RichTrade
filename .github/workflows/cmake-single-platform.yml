@@ -1,0 +1,79 @@
+name: CMake Build and Test
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BUILD_TYPE: Release
+  BOOST_VERSION: "1.69.0"
+  BOOST_ROOT: ${{ github.workspace }}/boost_1_69_0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ninja-build
+        sudo apt-get install -y libssl-dev zlib1g-dev
+
+    - name: Download and Install Boost
+      run: |
+        wget https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_VERSION }}/source/boost_1_69_0.tar.gz
+        tar -xzf boost_1_69_0.tar.gz
+        cd boost_1_69_0
+        ./bootstrap.sh --with-libraries=system,thread
+        ./b2 -j$(nproc) --with-system --with-thread link=static runtime-link=static
+
+    - name: Configure Matching Engine
+      run: |
+        cmake -B ${{github.workspace}}/build \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -DBOOST_ROOT=${{env.BOOST_ROOT}} \
+          -DBOOST_INCLUDEDIR=${{env.BOOST_ROOT}} \
+          -DBOOST_LIBRARYDIR=${{env.BOOST_ROOT}}/stage/lib
+
+    - name: Build Matching Engine
+      run: |
+        cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test Matching Engine
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
+
+    - name: Configure Trading Client
+      run: |
+        cmake -B ${{github.workspace}}/trading_client/build \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -DBOOST_ROOT=${{env.BOOST_ROOT}} \
+          -DBOOST_INCLUDEDIR=${{env.BOOST_ROOT}} \
+          -DBOOST_LIBRARYDIR=${{env.BOOST_ROOT}}/stage/lib
+
+    - name: Build Trading Client
+      run: |
+        cmake --build ${{github.workspace}}/trading_client/build --config ${{env.BUILD_TYPE}}
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: matching-engine
+        path: |
+          ${{github.workspace}}/build/MatchingEngine
+          ${{github.workspace}}/build/test_MatchingEngine
+        if-no-files-found: error
+
+    - name: Upload Trading Client Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: trading-client
+        path: ${{github.workspace}}/trading_client/build/TradingClient
+        if-no-files-found: error 
