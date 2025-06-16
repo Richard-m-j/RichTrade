@@ -13,7 +13,8 @@
                 "${workspaceFolder}/matching_engine/src/core",
                 "${workspaceFolder}/matching_engine/src/api",
                 "${workspaceFolder}/matching_engine/src/utils",
-                "${workspaceFolder}/matching_engine/external/boost_1_83_0"
+                "${workspaceFolder}/matching_engine/external/boost_1_83_0",
+                "${workspaceFolder}/trading_client/src",
             ],
             "defines": [
                 "_DEBUG",

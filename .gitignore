@@ -8,6 +8,7 @@ cmake-build-*/
 
 # External dependencies
 /matching_engine/external/
+/trading_client/external/
 /matching_engine/_deps/
 
 # CMake generated files
