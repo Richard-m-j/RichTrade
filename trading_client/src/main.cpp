@@ -59,9 +59,9 @@ int main() {
         }
         else if (command == "connect") {
             if (client.connect()) {
-                std::cout << "Successfully connected to server" << std::endl;
+                std::cout << std::endl << "Successfully connected to server" << std::endl;
             } else {
-                std::cout << "Failed to connect to server" << std::endl;
+                std::cout << std::endl << "Failed to connect to server" << std::endl;
             }
         }
         else if (command == "disconnect") {
@@ -79,9 +79,9 @@ int main() {
                 }
                 
                 if (client.placeOrder(symbol, type, side, quantity, price)) {
-                    std::cout << "Order placed successfully" << std::endl;
+                    std::cout << std::endl << "Order placed successfully" << std::endl;
                 } else {
-                    std::cout << "Failed to place order" << std::endl;
+                    std::cout << std::endl << "Failed to place order" << std::endl;
                 }
             } else {
                 std::cout << "Invalid order command format. Use: order <symbol> <type> <side> <quantity> [price]" << std::endl;
@@ -93,12 +93,12 @@ int main() {
             
             if (iss >> symbol) {
                 if (client.subscribeToMarketData(symbol)) {
-                    std::cout << "Subscribed to " << symbol << " market data" << std::endl;
+                    std::cout << std::endl << "Subscribed to " << symbol << " market data" << std::endl;
                 } else {
-                    std::cout << "Failed to subscribe to market data" << std::endl;
+                    std::cout << std::endl << "Failed to subscribe to market data" << std::endl;
                 }
             } else {
-                std::cout << "Invalid subscribe command format. Use: subscribe <symbol>" << std::endl;
+                std::cout << std::endl << "Invalid subscribe command format. Use: subscribe <symbol>" << std::endl;
             }
         }
         else if (command.substr(0, 11) == "unsubscribe") {
@@ -107,21 +107,21 @@ int main() {
             
             if (iss >> symbol) {
                 if (client.unsubscribeFromMarketData(symbol)) {
-                    std::cout << "Unsubscribed from " << symbol << " market data" << std::endl;
+                    std::cout << std::endl << "Unsubscribed from " << symbol << " market data" << std::endl;
                 } else {
-                    std::cout << "Failed to unsubscribe from market data" << std::endl;
+                    std::cout << std::endl << "Failed to unsubscribe from market data" << std::endl;
                 }
             } else {
-                std::cout << "Invalid unsubscribe command format. Use: unsubscribe <symbol>" << std::endl;
+                std::cout << std::endl << "Invalid unsubscribe command format. Use: unsubscribe <symbol>" << std::endl;
             }
         }
         else {
-            std::cout << "Unknown command. Type 'help' for available commands." << std::endl;
+            std::cout << std::endl << "Unknown command. Type 'help' for available commands." << std::endl;
         }
     }
 
     // Cleanup
     client.disconnect();
-    std::cout << "Trading client shutdown complete." << std::endl;
+    std::cout << std::endl << "Trading client shutdown complete." << std::endl;
     return 0;
 } 
